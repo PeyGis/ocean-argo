@@ -1,0 +1,11 @@
+initializePortResources: true
+scheduledResyncInterval: 120
+integration:
+  identifier: my-ocean-argocd-integration
+  type: argocd
+  eventListener:
+    type: POLLING
+  config:
+    serverUrl: https://localhost:8080
+  secrets:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJhZG1pbjpsb2dpbiIsImV4cCI6MTcxMjY5MTQ3OCwibmJmIjoxNzEyNjA1MDc4LCJpYXQiOjE3MTI2MDUwNzgsImp0aSI6IjhmZjYwZDgzLWFkODktNDljYy1hNDM2LTJmYTkzOTgzMjFjMyJ9.n4HiVDkxuGRujjljdgwnLKuOy2S2idG2xaIj_hVsneI

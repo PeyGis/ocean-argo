@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-ocean-argocd-integration
+  namespace: argocd
+spec:
+  destination:
+    namespace: my-ocean-argocd-integration
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+  - repoURL: 'https://port-labs.github.io/helm-charts/'
+    chart: port-ocean
+    targetRevision: 0.1.14
+    helm:
+      valueFiles:
+      - $values/argocd/my-ocean-argocd-integration/values.yaml
+      parameters:
+        - name: port.clientId
+          value: token
+        - name: port.clientSecret
+          value: token
+  - repoURL: https://github.com/PeyGis/ocean-argo.git
+    targetRevision: main
+    ref: values
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
